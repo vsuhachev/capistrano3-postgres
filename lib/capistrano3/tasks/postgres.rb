@@ -46,7 +46,7 @@ namespace :postgres do
     end
 
     desc 'Download last database dump'
-    task :download => [:remove_remote_file] do |_task, args|
+    task :download, [:remove_remote_file] do |_task, args|
       on roles(fetch(:postgres_role)) do |role|
         unless fetch(:postgres_remote_sqlc_file_path)
           file_name = capture("ls -v #{shared_path}/#{fetch :postgres_backup_dir}").split(/\n/).last
